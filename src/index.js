@@ -8,10 +8,11 @@ module.exports = function(specUrl, key, callback) {
 
     // Set up variables
 
-    var url = specUrl;
+    module.url = specUrl;
+    module.key = key;
 
-    if (!key)
-        key = new bitwsjs.bitcore.PrivateKey();
+    if (!module.key)
+        module.key = new bitwsjs.bitcore.PrivateKey();
 
     // Bitws signer
 
@@ -20,15 +21,16 @@ module.exports = function(specUrl, key, callback) {
     };
 
     bitwsSigner.prototype.apply = function(obj, authorizations) {
-        var signature = bitwsjs.signSerialize(url, obj.data, this.key, null);
+        var signature = bitwsjs.signSerialize(module.url, obj.data, this.key, null);
         obj.headers["signature"] = signature;
+        console.log('Signing request ', obj);
         return true;
     };
 
     // Starting swagger client
 
     module.client = new Swagger({
-        url: url,
+        url: module.url,
         port: 3666,
         success:function() {
             console.log('bitws-js-middleware initiated');
@@ -41,9 +43,10 @@ module.exports = function(specUrl, key, callback) {
                 callback(true);
         },
         authorizations : {
-            bitws: new bitwsSigner(key)
+            bitws: new bitwsSigner(module.key)
         }
     });
 
     return module;
+
 }
