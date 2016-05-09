@@ -23,7 +23,7 @@ module.exports = function(specUrl, key, callback) {
     bitwsSigner.prototype.apply = function(obj, authorizations) {
         var signature = bitwsjs.signSerialize(module.url, obj.data, this.key, null);
         obj.headers["signature"] = signature;
-        console.log('Signing request ', obj);
+        //console.log('Signing request ', obj);
         return true;
     };
 
