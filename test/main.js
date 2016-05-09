@@ -20,9 +20,14 @@ describe('PetStore Test', function() {
 
     it("Should make an request asking for pet #7", function(done) {
         this.timeout(10000);
-        mid.client.pet.getPetById({petId:7},function(pet){
+        mid.client.pet.getPetById({petId:7}, function(pet){
             console.log('Pet : ', pet.obj);
             expect(pet.status).to.be.equal(200);
+            done();
+        },
+        function(error) {
+            console.log('failed with the following: ' + error.statusText);
+            throw error;
             done();
         });
     });
@@ -47,9 +52,14 @@ describe('CryptoCapital Test', function() {
 
     it("Should make an request asking for account #9000000000", function(done) {
         this.timeout(10000);
-        mid.client.default.getAccountById({account:"9000000000"},function(account){
-            console.log('Account : ', account.obj);
+        mid.client.default.getAccountById({account:"9000000000"}, function(account){
+            console.log('account : ', account.obj);
             expect(account.status).to.be.equal(200);
+            done();
+        },
+        function(error) {
+            console.log('failed with the following: ' + error.statusText);
+            throw error;
             done();
         });
     });
