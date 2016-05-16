@@ -1,0 +1,37 @@
+{
+  "name": "bitws-js-middleware",
+  "version": "0.0.1",
+  "description": "A middleware to add bitws authentication to the client requests.",
+  "main": "index.js",
+  "scripts": {
+      "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
+      "coverage": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deginner/bitjws-js-client"
+  },
+  "keywords": [
+    "bitws",
+    "bitws-js",
+    "bitcoin-signature"
+  ],
+  "author": "Augusto Lemble",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/deginner/bitjws-js-client/issues"
+  },
+  "dependencies": {
+    "swagger-client": "~2.1.13",
+    "bitws-js": "0.0.3"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-contrib-uglify": "~1.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-contrib-concat": "~1.0.0",
+    "chai": "^3.4.0",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.3"
+  }
+}
